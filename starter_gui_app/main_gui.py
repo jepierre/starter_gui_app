@@ -2,35 +2,18 @@
 """ 
     Starter App
 """
-import traceback
-
-import termcolor
-
-__appname__ = "Starter"
 
 import logging
 import os
 import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from starter_gui_app.utils import create_logger, excepthook
 
-app_path = os.path.dirname(__file__)
-app_log_path = os.path.join(app_path, "logs")
-
-if not os.path.exists(app_log_path):
-    os.makedirs(app_log_path)
-
-log_file_name = __appname__ + ".txt"
-
-formatter = "%(asctime)s: %(name)s -%(levelname)s -%(module)s -%(funcName)s -%(lineno)-3d -%(message)s"
-logging.basicConfig(
-    filename=os.path.join(app_log_path, log_file_name), format=formatter
-)
-logger = logging.getLogger(name="main-gui")
-logger.setLevel(logging.DEBUG)
+logger = logging.getLogger("main-gui")
 
 
-class Main(QMainWindow):
+class MainGui(QMainWindow):
     def __init__(self, *args, **kargs):
         super().__init__(*args, **kargs)
         self.init_ui()
@@ -46,20 +29,15 @@ class Main(QMainWindow):
 
 
 def main():
-    # Enable logging on the console
-    ch = logging.StreamHandler()
-    ch.setFormatter(logging.Formatter(formatter))
-    ch.setLevel(logging.DEBUG)
-    logger.addHandler(ch)
 
-
+    create_logger()
 
     # Set global exception handler.
     sys.excepthook = excepthook
 
     # Open the app
     app = QApplication(sys.argv)
-    App = Main()
+    App = MainGui()
     sys.exit(app.exec_())
 
 

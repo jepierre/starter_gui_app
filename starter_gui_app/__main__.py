@@ -1,4 +1,4 @@
-from PyNotePad.Main import main
+from starter_gui_app.main_gui import main
 
 
 if __name__ == "__main__":

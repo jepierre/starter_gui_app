@@ -4,7 +4,7 @@
 
 from setuptools import setup, find_packages
 import setuptools
-from samplemodule.version import __version__
+from starter_gui_app.version import __version__
 
 with open("README.md", "r") as f:
     readme = f.read()

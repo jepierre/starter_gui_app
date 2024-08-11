@@ -19,3 +19,18 @@ http://doc.qt.io/qt-5/stylesheet-reference.html
 http://doc.qt.io/qt-5/stylesheet-examples.html
 
 
+install pyqt
+
+pip install pyqt5, pyqt5-tools
+using designer
+pyqt5-tools designer
+
+pyqt5 seems to only work for python 3.9
+
+https://realpython.com/qt-designer-python/#getting-started-with-qt-designer
+
+https://python.plainenglish.io/making-plots-with-the-pandas-groupby-ac492941af28
+
+https://builtin.com/data-science/pandas-groupby
+
+
