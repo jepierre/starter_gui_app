@@ -97,26 +97,22 @@ class MainWindow(QMainWindow):
     def init_ui(self):
         self.setWindowTitle("Logger Example")
         self.setGeometry(200, 200, 640, 480)
+
+        layout = QVBoxLayout()
+        group_box = QGroupBox()
+
+        # Add push button
         self._button = QPushButton()
         self._button.setText("Test Me")
-
-        group_box = QGroupBox()
-        layout = QVBoxLayout()
-        layout.addWidget(self._button)
-        te = QTextEdit()
-        logg = QPlainTextEditLogger(te)
-
-        clogger = CustomLoggerWidget(self)
-        # layout.addWidget(clogger)
-        # layout.addWidget(logg.text_edit_logger)
-
         self._button.clicked.connect(self.test)
+        layout.addWidget(self._button)
 
         group_box.setLayout(layout)
-        # self.setCentralWidget(QTextEdit())
-        self.layout().addWidget(group_box)
+        # this is needed for the main window
+        self.setCentralWidget(group_box)
+
+        clogger = CustomLoggerWidget(self)
         self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, clogger)
-        # self.layout().addWidget(self._button)
 
         self.show()
 
