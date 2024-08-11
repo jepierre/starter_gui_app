@@ -7,8 +7,18 @@ import logging
 import os
 import sys
 from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from starter_gui_app.utils import create_logger, excepthook
+from PyQt5.QtCore import QCoreApplication, Qt
+from starter_gui_app.utils.utils import __appname__
+from starter_gui_app.version import __version__
+
+from PyQt5.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QTableWidgetItem,
+    QFileDialog,
+    QMessageBox,
+)
+from starter_gui_app.utils.utils import create_logger, excepthook
 
 logger = logging.getLogger("main-gui")
 
@@ -16,11 +26,15 @@ logger = logging.getLogger("main-gui")
 class MainGui(QMainWindow):
     def __init__(self, *args, **kargs):
         super().__init__(*args, **kargs)
+
         self.init_ui()
 
         self.show()
 
     def init_ui(self):
+        uic.loadUi(r"ui_files\main.ui", self)
+        logger.debug("loading main.ui")
+        self.setWindowTitle(__appname__)
         logger.debug("test logger")
 
     def exit_app(self):
@@ -29,6 +43,12 @@ class MainGui(QMainWindow):
 
 
 def main():
+
+    os.chdir(os.path.dirname(__file__))
+    QCoreApplication.setApplicationName(__appname__)
+    QCoreApplication.setApplicationVersion(__version__)
+    QCoreApplication.setOrganizationName(__appname__)
+    QCoreApplication.setOrganizationDomain(__appname__)
 
     create_logger()
 
