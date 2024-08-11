@@ -8,6 +8,7 @@ import os
 import sys
 from PyQt5 import uic
 from PyQt5.QtCore import QCoreApplication, Qt
+from starter_gui_app.utils.custom_logger_widget import CustomLoggerWidget
 from starter_gui_app.utils.utils import __appname__
 from starter_gui_app.version import __version__
 
@@ -35,6 +36,10 @@ class MainGui(QMainWindow):
         uic.loadUi(r"ui_files\main.ui", self)
         logger.debug("loading main.ui")
         self.setWindowTitle(__appname__)
+
+        # adds text docker and pins custom loggger to it
+        custom_logger = CustomLoggerWidget(self)
+        self.addDockWidget(Qt.BottomDockWidgetArea, custom_logger)
         logger.debug("test logger")
 
     def exit_app(self):
